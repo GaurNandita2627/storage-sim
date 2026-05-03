@@ -1,38 +1,27 @@
 # Storage System Simulator (C++)
 
-A mini storage system simulator that demonstrates how data is split, stored, and recovered using simple concepts inspired by distributed storage systems.
+## Overview
+This project is a C++ based storage system simulator that demonstrates file splitting, merging, parity generation, and recovery using RAID-like concepts.
 
----
+## Features
+- File Splitting into chunks
+- File Merging
+- Parity Generation (XOR-based concept)
+- File Recovery Simulation
+- CLI Menu System
 
-## 🚀 Features
-- File splitting into multiple chunks
-- File merging from chunks
-- Parity-based recovery simulation
-- Basic storage system workflow simulation
+## How to Run
+1. Compile:
+   g++ storage.cpp -o storage
 
----
+2. Run:
+   ./storage
 
-## 🛠 Tech Stack
-- C++
-- Linux / Termux
-- Git & GitHub
+## Concepts Used
+- File Handling in C++
+- Basic RAID concepts
+- Command Line Interface (CLI)
+- System Design basics
 
----
-
-## 📁 Project Structure
-- split.cpp → Splits file into chunks
-- merge.cpp → Merges chunks back into original file
-- parity.cpp → Generates parity for recovery
-- recover.cpp → Simulates data recovery
-- sample.txt → Input test file
-
----
-
-## ▶️ How to Run
-
-### 1. Compile programs
-```bash
-g++ split.cpp -o split
-g++ merge.cpp -o merge
-g++ parity.cpp -o parity
-g++ recover.cpp -o recover
+## Author
+GaurNandita2627
