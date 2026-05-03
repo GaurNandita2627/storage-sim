@@ -4,24 +4,23 @@ using namespace std;
 
 int main() {
 
-    ifstream c0("chunk_0", ios::binary);
     ifstream parity("parity", ios::binary);
 
-    ofstream recovered("chunk_5", ios::binary);
-
-    if (!c0 || !parity) {
-        cout << "Required files missing!";
+    if (!parity) {
+        cout << "Parity file not found!" << endl;
         return 1;
     }
 
-    char b1, bp;
+    ofstream recovered("recovered_chunk");
 
-    while (c0.get(b1) && parity.get(bp)) {
-        char original = b1 ^ bp;
-        recovered.put(original);
+    char c;
+
+    while (parity.get(c)) {
+        recovered.put(c); // simple simulation
     }
 
-    cout << "Chunk recovered successfully!";
+    cout << "Recovery simulation completed!" << endl;
+
     return 0;
 }
 

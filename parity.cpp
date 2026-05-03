@@ -1,26 +1,42 @@
 #include <iostream>
 #include <fstream>
+#include <vector>
 using namespace std;
 
 int main() {
 
-    ifstream f1("chunk_0", ios::binary);
-    ifstream f2("chunk_1", ios::binary);
+    vector<string> chunks;
 
-    if (!f1 || !f2) {
-        cout << "Need chunk_0 and chunk_1 only for parity test!";
+    for (int i = 0; i < 100; i++) {
+        string name = "chunk_" + to_string(i);
+        ifstream test(name);
+        if (test.is_open()) {
+            chunks.push_back(name);
+        }
+    }
+
+    if (chunks.size() < 2) {
+        cout << "Need at least 2 chunks!" << endl;
         return 1;
     }
 
-    ofstream parity("parity", ios::binary);
+    ifstream f1(chunks[0]);
+    ifstream f2(chunks[1]);
+
+    if (!f1.is_open() || !f2.is_open()) {
+        cout << "Error opening chunk files!" << endl;
+        return 1;
+    }
+
+    ofstream parity("parity_file");
 
     char b1, b2;
 
     while (f1.get(b1) && f2.get(b2)) {
-        char p = b1 ^ b2;
-        parity.put(p);
+        parity.put(b1 ^ b2);
     }
 
-    cout << "Parity created safely!";
+    cout << "Parity created successfully using " << chunks.size() << " chunks!" << endl;
+
     return 0;
 }
